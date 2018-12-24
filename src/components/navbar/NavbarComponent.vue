@@ -39,24 +39,24 @@
                         <Icon type="ios-people" />
                         数据导入
                     </template>
-                    <MenuItem name="2-1">新增用户</MenuItem>
-                    <MenuItem name="2-2">活跃用户</MenuItem>
+                    <MenuItem name="4-1">新增用户</MenuItem>
+                    <MenuItem name="4-2">活跃用户</MenuItem>
                 </Submenu>
                  <Submenu name="5">
                     <template slot="title">
                         <Icon type="ios-people" />
                         成果目录
                     </template>
-                    <MenuItem name="2-1">新增用户</MenuItem>
-                    <MenuItem name="2-2">活跃用户</MenuItem>
+                    <MenuItem name="5-1">新增用户</MenuItem>
+                    <MenuItem name="5-2">活跃用户</MenuItem>
                 </Submenu>
                   <Submenu name="6">
                     <template slot="title">
                         <Icon type="ios-people" />
                         数据提取
                     </template>
-                    <MenuItem name="2-1">新增用户</MenuItem>
-                    <MenuItem name="2-2">活跃用户</MenuItem>
+                    <MenuItem name="6-1">新增用户</MenuItem>
+                    <MenuItem name="6-2">活跃用户</MenuItem>
                 </Submenu>
             </Menu>
     </div>
