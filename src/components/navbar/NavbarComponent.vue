@@ -2,12 +2,18 @@
   <div class="nav" :class="{ 'sharink-nav':isSharink }">
     <div class="nav-bar">
       <div class="nav-bar-scroll">
-        <Menu theme="dark" :accordion="true" active-name="0-0" :open-names="['0']" >
+        <Menu theme="dark" :accordion="true" :active-name="menuIndexs.join('-')" :open-names="['0']">
           <Submenu :name="index" v-for="(item,index) in navBar" :key="index">
             <template slot="title">
-              <Icon v-if="item.icon" :type="item.icon" :size="item.fz"/>{{item.name}}
+              <Icon v-if="item.icon" :type="item.icon" :size="item.fz"/>
+              {{item.name}}
             </template>
-            <MenuItem  v-for="(menu,idx) in item.children" :name="index+'-'+idx" :to="menu.to" :key="idx">{{menu.name}}</MenuItem>
+            <MenuItem
+              v-for="(menu,idx) in item.children"
+              :name="index+'-'+idx"
+              :to="menu.to"
+              :key="idx"
+            >{{menu.name}}</MenuItem>
           </Submenu>
           <!-- <Submenu name="1">
             <template slot="title">
@@ -64,17 +70,15 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      isSharink: false,
+      isSharink: false
     };
   },
-  mounted() {
-
-},
+  props:['menuIndexs'],
+  mounted() {},
   methods: {
     toggleNav() {
       this.isSharink = !this.isSharink;
     }
-    
   },
   computed: {
     ...mapState(["navBar"])
@@ -90,12 +94,15 @@ export default {
     height: 100%;
 
     overflow: hidden;
-    width: 240px;
+    width: 200px;
     &-scroll {
       height: 100%;
-      width: 260px;
+      width: 220px;
       overflow-y: auto;
       overflow-x: hidden;
+      >ul{
+          width: 100%!important;
+      }
     }
   }
 }
@@ -117,7 +124,7 @@ export default {
   height: 61px;
   background: url(../../assets/images/collapse-icon.png) 0 0 no-repeat;
   position: absolute;
-  left: 240px;
+  left: 200px;
   top: calc(50% - 30px);
   cursor: pointer;
 }
@@ -125,9 +132,9 @@ export default {
   background-position: 0px -61px;
 }
 .sharink-nav {
-  margin-left: -240px;
+  margin-left: -200px;
 }
 .nav-bar .ivu-menu-item {
-  padding-left: 76px !important;
+  padding-left: 70px !important;
 }
 </style>

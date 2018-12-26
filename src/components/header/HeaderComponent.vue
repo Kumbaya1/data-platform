@@ -55,7 +55,6 @@
                 }
             }
             &-nav{
-                flex: 1;
                 text-align: right;
                 line-height: 40px;
                 color: #fff;
