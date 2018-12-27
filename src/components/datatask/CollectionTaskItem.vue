@@ -1,5 +1,5 @@
 <template>
-  <div class="task-item" :style="{width:width?width:'auto'}">
+  <div class="task-item">
     <div class="task-header">
       <p class="task-header-container">
         <span v-text="title" class="task-header-title"></span>
@@ -30,10 +30,12 @@ export default {
 <style scoped lang="scss">
 .task-item {
   height: 200px;
-  border: 1px solid;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   padding: 0 20px;
   position: relative;
   margin-bottom: 30px;
+  background: #f8f8f9;
 }
 .total {
   float: right;
