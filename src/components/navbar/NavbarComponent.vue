@@ -2,7 +2,12 @@
   <div class="nav" :class="{ 'sharink-nav':isSharink }">
     <div class="nav-bar">
       <div class="nav-bar-scroll">
-        <Menu theme="dark" :accordion="true" :active-name="menuIndexs.join('-')" :open-names="['0']">
+        <Menu
+          theme="dark"
+          :accordion="true"
+          :active-name="menuIndexs.join('-')"
+          :open-names="['0']"
+        >
           <Submenu :name="index" v-for="(item,index) in navBar" :key="index">
             <template slot="title">
               <Icon v-if="item.icon" :type="item.icon" :size="item.fz"/>
@@ -73,11 +78,15 @@ export default {
       isSharink: false
     };
   },
-  props:['menuIndexs'],
+  props: ["menuIndexs"],
   mounted() {},
   methods: {
     toggleNav() {
       this.isSharink = !this.isSharink;
+      const myEventResize = new Event("resize");
+      setTimeout(() => {
+        window.dispatchEvent(myEventResize);
+      },300);
     }
   },
   computed: {
@@ -100,8 +109,8 @@ export default {
       width: 220px;
       overflow-y: auto;
       overflow-x: hidden;
-      >ul{
-          width: 100%!important;
+      > ul {
+        width: 100% !important;
       }
     }
   }

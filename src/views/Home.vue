@@ -12,6 +12,7 @@
         <router-view></router-view>
       </div>
     </div>
+    <FooterComponent></FooterComponent>
   </div>
 </template>
 
@@ -21,12 +22,13 @@
 import { mapState } from "vuex";
 import HeaderComponent from "@/components/header/HeaderComponent.vue";
 import NavbarComponent from "@/components/navbar/NavbarComponent.vue";
+import FooterComponent from "@/components/footer/FooterComponent.vue";
 export default {
   name: "home",
   data() {
     return {
       breadCrumb: [],
-      menuIndexs : []
+      menuIndexs: []
     };
   },
   beforeRouteEnter(to, from, next) {
@@ -34,7 +36,7 @@ export default {
     // 不！能！获取组件实例 `this`
     // 因为当守卫执行前，组件实例还没被创建
     next(vm => {
-      vm.breadCrumb = vm.getBreakCrumb(to.meta.nameIndexs,vm.navBar);
+      vm.breadCrumb = vm.getBreakCrumb(to.meta.nameIndexs, vm.navBar);
     });
     // next();
   },
@@ -43,24 +45,24 @@ export default {
     // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
     // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
     // 可以访问组件实例 `this`
-    this.breadCrumb = this.getBreakCrumb(to.meta.nameIndexs,this.navBar);
+    this.breadCrumb = this.getBreakCrumb(to.meta.nameIndexs, this.navBar);
     next();
   },
   methods: {
-    getBreakCrumb(indexs,navBar){
+    getBreakCrumb(indexs, navBar) {
       let nameIndexs = indexs.concat([]);
       this.menuIndexs = indexs;
-      if(nameIndexs.length >0 ){
+      if (nameIndexs.length > 0) {
         let arr = [];
         const firstIndex = nameIndexs.shift();
         let target = navBar[firstIndex];
         arr.push(target.name);
-        nameIndexs.forEach(el=>{
+        nameIndexs.forEach(el => {
           target = target.children[el];
           arr.push(target.name);
-        })
+        });
         return arr;
-      }else{
+      } else {
         return [];
       }
     }
@@ -71,7 +73,8 @@ export default {
   components: {
     // HelloWorld
     HeaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   }
 };
 </script>
@@ -87,6 +90,8 @@ export default {
 }
 .container-fluid {
   flex: 1;
+  height: calc(100% - 40px);
+  overflow: auto hidden;
 }
 .bread-crumb {
   height: 40px;
