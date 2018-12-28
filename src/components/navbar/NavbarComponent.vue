@@ -19,52 +19,8 @@
               :name="index+'-'+idx"
               :to="menu.to"
               :key="idx"
-            >{{menu.name}}</MenuItem>
+            > {{menu.name}} </MenuItem>
           </Submenu>
-          <!-- <Submenu name="1">
-            <template slot="title">
-              <Icon type="ios-paper" :size="iconSize"/>数据采集总览
-            </template>
-            <MenuItem name="1-1" :to="{ name: 'dataview'}">数据采集总览</MenuItem>
-          </Submenu>
-          <Submenu name="2">
-            <template slot="title">
-              <Icon type="md-cog" :size="iconSize"/>数据任务管理
-            </template>
-            <MenuItem name="2-1" :to="{ name: 'datacollection'}">采集任务</MenuItem>
-            <MenuItem name="2-2" :to="{ name: 'log'}">采集日志</MenuItem>
-          </Submenu>
-          <Submenu name="3">
-            <template slot="title">
-              <Icon type="md-build" :size="iconSize"/>采集成果管理
-            </template>
-            <MenuItem name="3-1">新增和启动</MenuItem>
-            <MenuItem name="3-2">活跃分析</MenuItem>
-            <MenuItem name="3-3">时段分析</MenuItem>
-            <MenuItem name="3-4">用户留存</MenuItem>
-            <MenuItem name="3-5">流失用户</MenuItem>
-          </Submenu>
-          <Submenu name="4">
-            <template slot="title">
-              <Icon type="ios-cloud-download" :size="iconSize"/>数据导入
-            </template>
-            <MenuItem name="4-1">新增用户</MenuItem>
-            <MenuItem name="4-2">活跃用户</MenuItem>
-          </Submenu>
-          <Submenu name="5">
-            <template slot="title">
-              <Icon type="md-trophy" :size="iconSize"/>成果目录
-            </template>
-            <MenuItem name="5-1">新增用户</MenuItem>
-            <MenuItem name="5-2">活跃用户</MenuItem>
-          </Submenu>
-          <Submenu name="6">
-            <template slot="title">
-              <Icon type="ios-paper" :size="iconSize"/>数据提取
-            </template>
-            <MenuItem name="6-1">新增用户</MenuItem>
-            <MenuItem name="6-2">活跃用户</MenuItem>
-          </Submenu>-->
         </Menu>
       </div>
     </div>
@@ -77,7 +33,7 @@ export default {
   data() {
     return {
       isSharink: false,
-      openNames: ["1"]
+      openNames: []
     };
   },
   props: ["menuIndexs"],
@@ -101,14 +57,11 @@ export default {
   },
   watch: {
     menuIndexs(val) {
+      this.openNames.splice(0,1,parseInt(val[0]));
       this.$nextTick(() => {
-        console.log(this.$refs.submenu);
-        console.log(this.openNames);
+        // this.openNames.push(parseInt(val[0]));
         this.$refs.submenu.updateOpened();
       });
-      this.$refs.submenu.updateOpened();
-
-      // console.log(this.$refs['submenu'+val[0]][0].dispatchEvent( new Event('click')))
     }
   }
 };
@@ -120,7 +73,6 @@ export default {
   transition: all ease 0.3s;
   &-bar {
     height: 100%;
-
     overflow: hidden;
     width: 200px;
     &-scroll {

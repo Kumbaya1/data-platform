@@ -22,7 +22,7 @@ export default {
   },
   mounted() {
     this.$axios.get("getcollectionlist").then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       this.collectionlist = res.data.list;
     });
   },

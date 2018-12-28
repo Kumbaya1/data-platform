@@ -16,7 +16,7 @@
           ref="formValidate"
           :model="formValidate"
           :rules="ruleValidate"
-          :label-width="60"
+          :label-width="50"
           label-position="left"
           inline
         >
@@ -24,9 +24,9 @@
             <label slot="label">
               <Icon type="md-person" :size="iconSize" style="padding:0"/>
             </label>
-            <Input v-model="formValidate.username" placeholder="用户名"></Input>
+            <Input v-model="formValidate.username" placeholder="用户名" style="width:200px"></Input>
           </FormItem>
-          <FormItem prop="password" label="<h1>22</h1>">
+          <FormItem prop="password">
             <label slot="label">
               <Icon type="ios-unlock" :size="iconSize" style="padding:0"/>
             </label>
@@ -36,6 +36,8 @@
               type="password"
               @on-focus="onFocusPwd"
               @on-blur="onBlurPwd"
+              size="large"
+              style="width:200px"
             ></Input>
           </FormItem>
         </Form>
@@ -83,8 +85,10 @@ export default {
       this.addRippleEffect(e);
       this.checkForm();
     },
-    checkForm(){
-      this.$router.push({name:'home'})
+    checkForm() {
+      setTimeout(() => {
+        this.$router.push({ name: "home" });
+      },1000);
     },
     addRippleEffect(e) {
       const btnWrap = this.$refs.subbtn;
@@ -101,7 +105,7 @@ export default {
         this.$refs.ripple.classList.remove("show");
       }
       setTimeout(() => {
-        this.$refs.ripple?this.$refs.ripple.classList.add("show"):'';
+        this.$refs.ripple ? this.$refs.ripple.classList.add("show") : "";
       }, 100);
     },
     onFocusPwd() {
@@ -125,7 +129,7 @@ export default {
 }
 .form {
   width: 400px;
-  padding: 40px 80px;
+  /* padding: 40px 80px; */
   /* border: 1px solid; */
   border-radius: 4px;
   text-align: center;
@@ -184,7 +188,7 @@ export default {
 .password .arm-left {
   transform: translateY(-40px) translateX(40px);
 }
-.password .arm-right{
+.password .arm-right {
   transform: translateY(-40px) translateX(-40px) scaleX(-1);
 }
 .arm-left {
