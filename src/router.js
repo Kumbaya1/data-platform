@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Login from './views/Login.vue'
 import Home from './views/Home.vue'
 import DataView from '@/components/dataview/DataViewComponent.vue'
 import DataCollectionComponent from '@/components/datatask/DataCollectionComponent.vue'
@@ -12,6 +13,11 @@ export default new Router({
     {
       path: '/',
       redirect: '/home/dataview'
+    },
+    {
+      path:'/login',
+      name:'login',
+      component:Login
     },
     {
       path: '/home',

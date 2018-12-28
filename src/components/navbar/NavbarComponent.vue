@@ -6,7 +6,8 @@
           theme="dark"
           :accordion="true"
           :active-name="menuIndexs.join('-')"
-          :open-names="['0']"
+          :open-names="openNames"
+          ref="submenu"
         >
           <Submenu :name="index" v-for="(item,index) in navBar" :key="index">
             <template slot="title">
@@ -75,22 +76,40 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      isSharink: false
+      isSharink: false,
+      openNames: ["1"]
     };
   },
   props: ["menuIndexs"],
-  mounted() {},
+  mounted() {
+    // console.log(this.isSharink)
+    // console.log(this.menuIndexs)
+    // console.log(this.$refs.submenu1)
+  },
   methods: {
     toggleNav() {
       this.isSharink = !this.isSharink;
       const myEventResize = new Event("resize");
       setTimeout(() => {
         window.dispatchEvent(myEventResize);
-      },300);
-    }
+      }, 300);
+    },
+    updateOpened() {}
   },
   computed: {
     ...mapState(["navBar"])
+  },
+  watch: {
+    menuIndexs(val) {
+      this.$nextTick(() => {
+        console.log(this.$refs.submenu);
+        console.log(this.openNames);
+        this.$refs.submenu.updateOpened();
+      });
+      this.$refs.submenu.updateOpened();
+
+      // console.log(this.$refs['submenu'+val[0]][0].dispatchEvent( new Event('click')))
+    }
   }
 };
 </script>
