@@ -5,6 +5,8 @@ import Home from './views/Home.vue'
 import DataView from '@/components/dataview/DataViewComponent.vue'
 import DataCollectionComponent from '@/components/datatask/DataCollectionComponent.vue'
 import LogInfoComponent from '@/components/datatask/LogInfoComponent.vue'
+import AchievementComponent from '@/components/achievement/AchievementComponent.vue'
+import ImportData from '@/components/importdata/ImportData.vue'
 
 Vue.use(Router)
 
@@ -15,33 +17,45 @@ export default new Router({
       redirect: '/home/dataview'
     },
     {
-      path:'/login',
-      name:'login',
-      component:Login
+      path: '/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/home',
       name: 'home',
       component: Home,
       redirect: '/home/dataview',
-      children:[
+      children: [
         {
           path: 'dataview',
           name: 'dataview',
-          component:DataView,
-          meta: { requiresAuth: true ,nameIndexs:[0,0]}
+          component: DataView,
+          meta: { requiresAuth: true, nameIndexs: [0, 0] }
         },
         {
           path: 'datacollection',
           name: 'datacollection',
-          component:DataCollectionComponent,
-          meta: { requiresAuth: true ,nameIndexs:[1,0]}
+          component: DataCollectionComponent,
+          meta: { requiresAuth: true, nameIndexs: [1, 0] }
         },
         {
           path: 'log',
           name: 'log',
-          component:LogInfoComponent,
-          meta: { requiresAuth: true ,nameIndexs:[1,1]}
+          component: LogInfoComponent,
+          meta: { requiresAuth: true, nameIndexs: [1, 1] }
+        },
+        {
+          path: 'importdata',
+          name: 'importdata',
+          component: ImportData,
+          meta: { requiresAuth: true, nameIndexs: [3, 0] }
+        },
+        {
+          path: 'achievement',
+          name: 'achievement',
+          component: AchievementComponent,
+          meta: { requiresAuth: true, nameIndexs: [4, 0] }
         }
       ]
     },
